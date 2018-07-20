@@ -1,6 +1,6 @@
 import React, { Component}  from 'react';
+import Home from './../components/Home'
 
-const Home = () => <h2>Home</h2>
 const Login = () => <h2>Login</h2>
 const Register = () => <h2>Register</h2>
 

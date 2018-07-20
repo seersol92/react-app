@@ -5,7 +5,7 @@ import {
   Link,
 } from 'react-router-dom'
 import Routes from './routes/Router'
-import ButtonAppBar from './components/navBar'
+import Layout from './layout/Layout'
 
 
 class App extends React.Component {
@@ -13,13 +13,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-        <ButtonAppBar />
-          <ul>
-            <li><Link to="/home">home</Link></li>
-            <li><Link to="/login">login</Link></li>
-            <li><Link to="/register">register</Link></li>
-          </ul>
-
+        <Layout>
          {Routes.map((route) => (
             <Route
               key={route.path}
@@ -28,6 +22,7 @@ class App extends React.Component {
               component={route.component}
             />
           ))}
+          </Layout>
         </div>
       </Router>
     )

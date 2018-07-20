@@ -31,8 +31,8 @@ function ButtonAppBar(props) {
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
           </IconButton>
-          <Typography variant="title" color="inherit" className={classes.flex} >
-            <Link to="/"> React App</Link>
+          <Typography variant="title" color="inherit" className={classes.flex} component={Link} to="/">
+            React App
           </Typography>
           <Button component={Link} to="/login" color="inherit"> Login </Button>
           <Button component={Link} to="/register" color="inherit"> Register </Button>
