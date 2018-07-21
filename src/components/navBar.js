@@ -1,49 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import {
-  Link,
-} from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+class NavBar extends Component {
+  render() { 
+    return (
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <Link  to={'/'} className="navbar-brand">React-Shop</Link>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
-
-function ButtonAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-          </IconButton>
-          <Typography variant="title" color="inherit" className={classes.flex} component={Link} to="/">
-            React App
-          </Typography>
-          <Button component={Link} to="/login" color="inherit"> Login </Button>
-          <Button component={Link} to="/register" color="inherit"> Register </Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+          <div className="collapse navbar-collapse" id="navbarColor02">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link  to={'/login'} activeClassName="active" className="nav-link">Login</Link>
+              </li>
+              <li className="nav-item">
+              <Link  to={'/register'} activeClassName="active" className="nav-link">Register</Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    );
+  }
 }
-
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonAppBar);
+ 
+export default NavBar;

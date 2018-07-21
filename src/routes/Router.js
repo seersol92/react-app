@@ -1,9 +1,7 @@
 import React, { Component}  from 'react';
 import Home from './../components/Home'
-
-const Login = () => <h2>Login</h2>
-const Register = () => <h2>Register</h2>
-
+import Register from './../components/Register'
+import Login from './../components/Login'
 
 const Routes = [
   {
