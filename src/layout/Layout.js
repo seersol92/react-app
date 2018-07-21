@@ -1,6 +1,5 @@
 import React from 'react'
 import ButtonAppBar from './../components/navBar'
-import $ from 'jquery';
 
 class Layout extends React.Component {
   render() {

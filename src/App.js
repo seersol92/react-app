@@ -1,8 +1,7 @@
 import React from 'react'
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
+  Route
 } from 'react-router-dom'
 import Routes from './routes/Router'
 import Layout from './layout/Layout'

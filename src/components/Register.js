@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import $ from 'jquery';
 class Register extends Component {
     render() { 
         return (
@@ -8,7 +7,7 @@ class Register extends Component {
             <div className="container mt-5">
             <div className="row justify-content-md-center">
                 <div className="col-lg-6 col-sm-12">
-                    <form  className="form-horizontal" role="form">
+                    <form  className="form-horizontal">
                     <div className="row">
                         <div className="col-12 ml-4">
                             <h5>Create New Account</h5>
