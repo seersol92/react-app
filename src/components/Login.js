@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+
+
+import * as actions from './../store/actions/index';
 
 class Login extends Component {
     constructor(props) {
-        super(props);
+        super(props); 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            isFormProcessing : false
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -18,12 +23,31 @@ class Login extends Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state);
         event.preventDefault();
+        this.setState({ isFormProcessing: true });
+        this.props.onAuth(this.state.email, this.state.password)
+      /*  request({
+            url:    '/auth/login',
+            method: 'POST',
+            data:  {
+                user: this.state.email,
+                password: this.state.password
+            }
+          })
+          .then( res => {
+            toast.success(res.message);
+          })
+          .catch ( err => this.setState({ isFormProcessing: false })); */
     }
+
     render() { 
+        let authRedirect = null;
+        if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to={this.props.authRedirectPath}/>
+        };
         return (
         <div>
+            {authRedirect}
             <div className="container mt-5">
             <div className="row justify-content-md-center">
                 <div className="col-lg-6 col-sm-12">
@@ -39,15 +63,15 @@ class Login extends Component {
                     <div className="row">
                         <div className="col-12">
                             <div className="form-group has-danger">
-                                <label className="sr-only" for="email">E-Mail Address</label>
+                                <label className="sr-only" for="email-or-username">User-Name Or E-Mail Address</label>
                                 <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                     <div className="input-group-addon mr-3 mt-2" ><i className="fa fa-at"></i></div>
                                     <input 
                                     type="text"
                                     name="email"
                                     className="form-control"
-                                    placeholder="you@example.com"
-                                    value={this.state.password} onChange={this.handleChange} 
+                                    placeholder="User-Name Or E-mail"
+                                     onChange={this.handleChange} 
                                     required autofocus />
                                 </div>
                             </div>
@@ -63,7 +87,7 @@ class Login extends Component {
                                     type="password"
                                     name="password"
                                     className="form-control"
-                                    value={this.state.email} onChange={this.handleChange} 
+                                    onChange={this.handleChange} 
                                     placeholder="Password" required />
                                 </div>
                             </div>
@@ -71,7 +95,11 @@ class Login extends Component {
                     </div> 
                     <div className="row" >
                         <div className="col-12">
-                            <button type="submit" className="btn btn-success float-left ml-4">
+                            <button 
+                            type="submit" 
+                            disabled = {(this.state.isFormProcessing) ? 'disabled' : ''}
+                            className="btn btn-success float-left ml-4"
+                            >
                                 <i className="fa fa-sign-in"></i> &nbsp; 
                                 Login
                             </button>
@@ -85,5 +113,20 @@ class Login extends Component {
         </div>)
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        authRedirectPath: state.auth.authRedirectPath
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: ( email, password ) => dispatch( actions.auth( email, password ) ),
+    }
+}
  
-export default Login;
+export default  connect(mapStateToProps, mapDispatchToProps)(Login);

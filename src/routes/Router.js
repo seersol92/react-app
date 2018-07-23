@@ -1,13 +1,18 @@
-import Home from './../components/Home'
-import Register from './../components/Register'
-import Login from './../components/Login'
+import Home from '../components/Home'
+import Register from '../components/Register'
+import Login from '../components/Login'
+import Dashboard from '../components/Dashboard'
 
 const Routes = [
-  {
-    path: '/',
-    exact: true,
-    component: Home
-  },
+    {
+      path: '/',
+      exact: true,
+      component: Home
+    },
+    {
+      path: '/dashboard',
+      component: Dashboard
+    },
     {
       path: '/home',
       component: Home
