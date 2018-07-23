@@ -1,3 +1,6 @@
 //Export action buddles 
-
-export { auth } from './auth';
+export { 
+    auth,
+    logout,
+    authCheckState
+} from './auth';

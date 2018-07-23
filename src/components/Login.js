@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
-
-
+import { Link, Redirect } from 'react-router-dom';
 import * as actions from './../store/actions/index';
 
 class Login extends Component {
@@ -10,8 +8,7 @@ class Login extends Component {
         super(props); 
         this.state = {
             email: '',
-            password: '',
-            isFormProcessing : false
+            password: ''
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -26,18 +23,6 @@ class Login extends Component {
         event.preventDefault();
         this.setState({ isFormProcessing: true });
         this.props.onAuth(this.state.email, this.state.password)
-      /*  request({
-            url:    '/auth/login',
-            method: 'POST',
-            data:  {
-                user: this.state.email,
-                password: this.state.password
-            }
-          })
-          .then( res => {
-            toast.success(res.message);
-          })
-          .catch ( err => this.setState({ isFormProcessing: false })); */
     }
 
     render() { 
@@ -97,7 +82,7 @@ class Login extends Component {
                         <div className="col-12">
                             <button 
                             type="submit" 
-                            disabled = {(this.state.isFormProcessing) ? 'disabled' : ''}
+                            disabled = {this.props.loading}
                             className="btn btn-success float-left ml-4"
                             >
                                 <i className="fa fa-sign-in"></i> &nbsp; 

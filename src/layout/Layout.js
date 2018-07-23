@@ -1,12 +1,15 @@
 import React from 'react'
-import ButtonAppBar from '../components/navBar'
+import ButtonAppBar from '../components/NavBar/NavBar'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 class Layout extends React.Component {
   render() {
     return (
         <div>
-            <ButtonAppBar /> 
+            <ButtonAppBar
+            isAuth = {this.props.isAuthenticated}
+            user = {this.props.userInfo}
+            /> 
             <main>
                 {this.props.children}
                 <ToastContainer
@@ -25,4 +28,6 @@ class Layout extends React.Component {
     )
   }
 }
-export default Layout;
+
+  
+export default  Layout;

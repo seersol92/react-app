@@ -2,16 +2,24 @@ import Home from '../components/Home'
 import Register from '../components/Register'
 import Login from '../components/Login'
 import Dashboard from '../components/Dashboard'
+import Profile from '../components/Profile'
+import Logout from '../components/Logout'
 
 const Routes = [
     {
-      path: '/',
-      exact: true,
-      component: Home
+      path: '/dashboard',
+      component: Dashboard,
+      authGuard: true
     },
     {
-      path: '/dashboard',
-      component: Dashboard
+      path: '/profile',
+      component: Profile,
+      authGuard: true
+    },
+    {
+      path: '/logout',
+      component: Logout,
+      authGuard: true
     },
     {
       path: '/home',
@@ -20,16 +28,15 @@ const Routes = [
     {
       path: '/login',
       component: Login,
-     /* routes: [
-        {
-          path: '/tacos/bus',
-          component: Bus
-        }     
-      ] */
     }, 
     {
         path: '/register',
         component: Register
+    },
+    {
+      path: '/',
+      exact: true,
+      component: Home
     }
   ]
 

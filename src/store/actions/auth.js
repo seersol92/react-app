@@ -23,6 +23,14 @@ export const authFail = (error) => {
     }
 }
 
+export const logout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+    return {
+        type: actionTypes.AUTH_LOGOUT
+    };
+}
+
 export const auth = (user, password) => {
     return dispatch => {
         //authenticate user here
@@ -43,9 +51,30 @@ export const auth = (user, password) => {
           })
           .catch ( err => {
             dispatch(authFail(err.data.message));
-              // this.setState({ isFormProcessing: false })
           }
         );
 
     }
 }
+
+export const authCheckState = () => {
+    return dispatch => {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            dispatch(logout());
+        } else {
+            const user = localStorage.getItem('user');
+            dispatch(authSuccess(token, JSON.parse(user)));
+            //  dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+            /*
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            if (expirationDate <= new Date()) {
+                dispatch(logout());
+            } else {
+                const userId = localStorage.getItem('userId');
+                dispatch(authSuccess(token, userId));
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+            }  */
+        }
+    };
+};
