@@ -6,7 +6,7 @@ class Register extends Component {
     // print the form values to the console
         console.log(values)
     }
-
+    
     render() { 
         return (
         <div>
