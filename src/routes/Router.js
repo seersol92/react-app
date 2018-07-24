@@ -4,6 +4,7 @@ import Login from '../components/Login'
 import Dashboard from '../components/Dashboard'
 import Profile from '../components/Profile'
 import Logout from '../components/Logout'
+import {Test} from '../components/Test'
 
 const Routes = [
     {
@@ -24,6 +25,10 @@ const Routes = [
     {
       path: '/home',
       component: Home
+    },
+    {
+      path: '/form',
+      component: Test
     },
     {
       path: '/login',
