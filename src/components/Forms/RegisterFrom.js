@@ -94,5 +94,5 @@ export default reduxForm({
   form: 'syncValidation', // a unique identifier for this form
   validate, // <--- validation function given to redux-form
   asyncValidate,
-  asyncBlurFields: ['userName', 'email']
+  asyncBlurFields: ['userName']
 })(RegisterForm)
