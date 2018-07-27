@@ -1,13 +1,23 @@
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+import request from './Request'
 
+const sleep = ms => new Promise((resolve) => setTimeout(resolve,ms))
 const asyncValidate = (values /*, dispatch */) => {
-  return sleep(1000).then(() => {
-    
+ return sleep(1000).then(() => {
     // simulate server latency
-    if (['john', 'paul', 'george', 'ringo'].includes(values.userName)) {
-      throw { userName: 'That username is taken' }
-    }
+          return request({
+            url:    `/auth/check-user-name/${values.userName}`,
+            method: 'GET'
+          })
+          .then( response => {
+            if (response.success) {
+             throw {userName: 'That username is taken'}
+            }
+          })
+          .catch ( err => {
+          throw  {userName: 'That username is taken'}
+          }
+        );
   })
 }
 
-export default asyncValidate
+export default asyncValidate  
